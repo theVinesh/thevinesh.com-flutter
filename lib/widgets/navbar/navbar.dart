@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thevinesh/page/page.dart';
+import 'package:thevinesh/widgets/navbar/site_sliding_segmented_control.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -24,12 +24,26 @@ class _NavBarState extends State<NavBar> {
     // ignore: close_sinks
     final PageBloc _bloc = BlocProvider.of<PageBloc>(context);
     return Container(
-      child: Row(
+      width: double.infinity,
+      color: Theme
+          .of(context)
+          .primaryColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          CupertinoSlidingSegmentedControl(
-            thumbColor: Colors.red,
-            backgroundColor: Colors.transparent,
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: SizedBox(
+                height: 32,
+                width: 32,
+                child: Placeholder()
+            ),
+          ),
+          SlidingSegmentedControlWithThumbUnderneath(
+            thumbColor: Theme
+                .of(context)
+                .accentColor,
             children: _createTabs(),
             groupValue: _currentTab ?? _bloc.initialPage,
             onValueChanged: (value) {

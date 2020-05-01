@@ -1,6 +1,9 @@
 export './page_bloc.dart';
 
-enum SitePage { home, resume }
+enum SitePage {
+  home,
+  resume,
+}
 
 extension SitePageName on SitePage {
   String toName() {
