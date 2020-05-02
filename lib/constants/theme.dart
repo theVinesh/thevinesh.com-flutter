@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SiteTheme {
   static Color get black => Color(0xff000000);
@@ -17,10 +18,13 @@ class SiteTheme {
 
   static ThemeData get theme {
     final themeData = ThemeData.light();
-    final baseTextStyle = themeData.textTheme.bodyText2.copyWith(
-      inherit: true,
-      color: black,
-      fontSize: baseFontSize,
+    final baseTextStyle = GoogleFonts.getFont(
+      "Oxygen Mono",
+      textStyle: themeData.textTheme.bodyText2.copyWith(
+        inherit: true,
+        color: black,
+        fontSize: baseFontSize,
+      ),
     );
     final textTheme = themeData.textTheme.copyWith(
       button: baseTextStyle.copyWith(color: white),
@@ -30,6 +34,15 @@ class SiteTheme {
         fontSize: baseFontSize - 4,
         color: redLight,
         fontWeight: FontWeight.bold,
+      ),
+      headline2: baseTextStyle.copyWith(
+        fontSize: baseFontSize + 2,
+      ),
+      headline4: baseTextStyle.copyWith(
+        fontSize: baseFontSize + 4,
+      ),
+      headline6: baseTextStyle.copyWith(
+        fontSize: baseFontSize + 8,
       ),
     );
     return themeData.copyWith(

@@ -9,12 +9,16 @@ class ScreenHome extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Hi", style: Theme
-              .of(context)
-              .textTheme
-              .caption,),
-          Text("I am Vinesh Raju"),
-          Text("""
+          Text(
+            "hi",
+            style: Theme.of(context).textTheme.caption,
+          ),
+          Text(
+            "I'm Vinesh Raju - Android Developer and Tech Enthusiast.",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          Text(
+            """
                 I am currently an Android Developer at Swiggy. I am curious about almost everything.
               
                 When I am not sleeping, eating or coding,I like to Sing, Sketch and dream up about all the cool stuffs to do; which I almost always procrastinate.😅
@@ -23,7 +27,8 @@ class ScreenHome extends StatelessWidget {
               
                 Sign-up to get them in your inbox. I don't spam, I promise 🤞
               """
-              .stripMargin()),
+                .stripMargin(),
+          ),
         ],
       ),
     );
