@@ -26,6 +26,9 @@ class SiteTheme {
         fontSize: baseFontSize,
       ),
     );
+    final baseHeadlineStyle = baseTextStyle.copyWith(
+      fontWeight: FontWeight.bold,
+    );
     final textTheme = themeData.textTheme.copyWith(
       button: baseTextStyle.copyWith(color: white),
       bodyText1: baseTextStyle.copyWith(fontSize: baseFontSize - 2),
@@ -35,13 +38,13 @@ class SiteTheme {
         color: redLight,
         fontWeight: FontWeight.bold,
       ),
-      headline2: baseTextStyle.copyWith(
+      headline2: baseHeadlineStyle.copyWith(
         fontSize: baseFontSize + 2,
       ),
-      headline4: baseTextStyle.copyWith(
+      headline4: baseHeadlineStyle.copyWith(
         fontSize: baseFontSize + 4,
       ),
-      headline6: baseTextStyle.copyWith(
+      headline6: baseHeadlineStyle.copyWith(
         fontSize: baseFontSize + 8,
       ),
     );

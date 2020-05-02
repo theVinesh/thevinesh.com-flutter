@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thevinesh/utils/utils.dart';
@@ -5,13 +7,20 @@ import 'package:thevinesh/utils/utils.dart';
 class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenSizeConfig().init(context);
+
+    final avatarImageSize =
+        max(ScreenSizeConfig.blockSizeHorizontal, ScreenSizeConfig.blockSizeVertical) * 25;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(8),
-            child: Placeholder(),
+            color: Colors.grey,
+            height: avatarImageSize,
+            width: avatarImageSize,
+            margin: EdgeInsets.only(bottom: 16),
+            child: FlutterLogo(),
           ),
           Text(
             "I'm Vinesh Raju - Android Developer and Tech Enthusiast.",

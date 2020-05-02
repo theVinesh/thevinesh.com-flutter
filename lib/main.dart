@@ -2,12 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thevinesh/bloc_delegate.dart';
+import 'package:thevinesh/components/components.dart';
 import 'package:thevinesh/constants/constants.dart';
 import 'package:thevinesh/page/page.dart';
-import 'package:thevinesh/screens/home.dart';
-import 'package:thevinesh/screens/resume.dart';
-import 'package:thevinesh/widgets/navbar/navbar.dart';
-import 'package:thevinesh/widgets/text_background_view.dart';
+import 'package:thevinesh/widgets/widgets.dart';
 
 void main() {
   BlocSupervisor.delegate = SiteBlocDelegate();
@@ -32,32 +30,12 @@ class SiteApp extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 NavBar(),
-                Container(
-                  constraints: BoxConstraints(minWidth: 400, maxWidth: 1000),
-                  padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
-                  alignment: Alignment.topCenter,
-                  child: BlocBuilder<PageBloc, PageState>(
-                    builder: (context, state) => buildPage(context, state),
-                  ),
-                )
+                PageBody(),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget buildPage(BuildContext context, PageState state) {
-    if (state is PageLoadSuccess) {
-      switch (state.page) {
-        case SitePage.resume:
-          return ScreenResume();
-        default:
-          return ScreenHome();
-      }
-    } else {
-      return Text("Loading");
-    }
   }
 }

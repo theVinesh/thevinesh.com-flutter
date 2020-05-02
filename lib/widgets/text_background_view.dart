@@ -37,10 +37,11 @@ class TextBackgroundView extends StatelessWidget {
             height: ScreenSizeConfig.screenHeight,
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
-                  color: textColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: _scaleFactor * ScreenSizeConfig.blockSizeHorizontal),
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.bold,
+                fontSize: _scaleFactor * ScreenSizeConfig.blockSizeHorizontal,
+              ),
             ),
           ),
         ),
