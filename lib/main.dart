@@ -24,11 +24,16 @@ class SiteApp extends StatelessWidget {
       title: SiteStrings.appName,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Column(
+        body: ListView(
           children: [
             NavBar(),
-            BlocBuilder<PageBloc, PageState>(
-              builder: (context, state) => buildPage(context, state),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
+              color: Colors.yellow,
+              alignment: Alignment.topCenter,
+              child: BlocBuilder<PageBloc, PageState>(
+                builder: (context, state) => buildPage(context, state),
+              ),
             )
           ],
         ),

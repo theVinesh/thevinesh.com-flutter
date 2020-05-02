@@ -7,7 +7,7 @@ part 'page_event.dart';
 part 'page_state.dart';
 
 class PageBloc extends Bloc<PageEvent, PageState> {
-  final initialPage = SitePage.home;
+  static final initialPage = SitePage.home;
 
   @override
   PageState get initialState => PageLoadSuccess(initialPage);
