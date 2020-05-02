@@ -24,18 +24,21 @@ class SiteApp extends StatelessWidget {
       title: SiteStrings.appName,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: ListView(
-          children: [
-            NavBar(),
-            Container(
-              constraints: BoxConstraints(maxWidth: 10),
-              padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
-              alignment: Alignment.topCenter,
-              child: BlocBuilder<PageBloc, PageState>(
-                builder: (context, state) => buildPage(context, state),
-              ),
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              NavBar(),
+              Container(
+                constraints: BoxConstraints(minWidth: 100, maxWidth: 1200),
+                padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
+                alignment: Alignment.topCenter,
+                child: BlocBuilder<PageBloc, PageState>(
+                  builder: (context, state) => buildPage(context, state),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
