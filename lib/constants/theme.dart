@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SiteTheme {
-  static Color get black => Color(0xff000000);
+  static const Color black = Color(0xff000000);
 
-  static Color get white => Color(0xffffffff);
+  static const Color white = Color(0xffffffff);
 
-  static Color get red => Color(0xffd50000);
+  static const Color red = Color(0xffd50000);
 
-  static Color get redLight => Color(0xffff5131);
+  static const Color redLight = Color(0xffff5131);
 
-  static Color get redDark => Color(0xff9b0000);
+  static const Color redDark = Color(0xff9b0000);
 
-  static Color get grey => Color(0xfffafafa);
+  static const Color grey = Color(0xfffafafa);
 
-  static double get baseFontSize => 18;
+  static const double baseFontSize = 18;
 
   static ThemeData get theme {
     final themeData = ThemeData.light();

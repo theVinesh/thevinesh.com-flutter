@@ -7,6 +7,7 @@ import 'package:thevinesh/page/page.dart';
 import 'package:thevinesh/screens/home.dart';
 import 'package:thevinesh/screens/resume.dart';
 import 'package:thevinesh/widgets/navbar/navbar.dart';
+import 'package:thevinesh/widgets/text_background_view.dart';
 
 void main() {
   BlocSupervisor.delegate = SiteBlocDelegate();
@@ -24,20 +25,23 @@ class SiteApp extends StatelessWidget {
       title: SiteStrings.appName,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              NavBar(),
-              Container(
-                constraints: BoxConstraints(minWidth: 400, maxWidth: 1000),
-                padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
-                alignment: Alignment.topCenter,
-                child: BlocBuilder<PageBloc, PageState>(
-                  builder: (context, state) => buildPage(context, state),
-                ),
-              )
-            ],
+        body: TextBackgroundView(
+          textColor: SiteTheme.redLight,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                NavBar(),
+                Container(
+                  constraints: BoxConstraints(minWidth: 400, maxWidth: 1000),
+                  padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
+                  alignment: Alignment.topCenter,
+                  child: BlocBuilder<PageBloc, PageState>(
+                    builder: (context, state) => buildPage(context, state),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
