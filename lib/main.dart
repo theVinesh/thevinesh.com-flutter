@@ -30,7 +30,7 @@ class SiteApp extends StatelessWidget {
             children: [
               NavBar(),
               Container(
-                constraints: BoxConstraints(minWidth: 100, maxWidth: 1200),
+                constraints: BoxConstraints(minWidth: 400, maxWidth: 1000),
                 padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
                 alignment: Alignment.topCenter,
                 child: BlocBuilder<PageBloc, PageState>(

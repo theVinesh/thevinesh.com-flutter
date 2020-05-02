@@ -9,9 +9,9 @@ class ScreenHome extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "hi",
-            style: Theme.of(context).textTheme.caption,
+          Container(
+            padding: EdgeInsets.all(8),
+            child: Placeholder(),
           ),
           Text(
             "I'm Vinesh Raju - Android Developer and Tech Enthusiast.",

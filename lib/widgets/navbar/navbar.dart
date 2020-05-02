@@ -30,10 +30,11 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     _bloc = BlocProvider.of<PageBloc>(context);
     return Container(
+      padding: EdgeInsets.all(8),
       width: double.infinity,
       color: Theme.of(context).primaryColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
           InkWell(
@@ -44,16 +45,18 @@ class _NavBarState extends State<NavBar> {
                 width: 36,
                 child: Placeholder()),
           ),
-          Padding(
-            padding: EdgeInsets.all(4),
-            child: SlidingSegmentedControlWithThumbUnderneath(
-              thumbColor: Theme.of(context).primaryTextTheme.bodyText1.color,
-              children: _createTabs(),
-              groupValue: _currentTab ?? PageBloc.initialPage,
-              onValueChanged: (value) {
-                _onTabSelected(value);
-              },
-            ),
+          Spacer(),
+          SlidingSegmentedControlWithThumbUnderneath(
+            thumbColor: Theme
+                .of(context)
+                .primaryTextTheme
+                .bodyText1
+                .color,
+            children: _createTabs(),
+            groupValue: _currentTab ?? PageBloc.initialPage,
+            onValueChanged: (value) {
+              _onTabSelected(value);
+            },
           )
         ],
       ),
