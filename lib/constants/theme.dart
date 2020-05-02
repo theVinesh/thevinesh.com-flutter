@@ -1,19 +1,44 @@
 import 'package:flutter/material.dart';
 
 class SiteTheme {
+  static Color get black => Color(0xff000000);
+
+  static Color get white => Color(0xffffffff);
+
+  static Color get red => Color(0xffd50000);
+
+  static Color get redLight => Color(0xffff5131);
+
+  static Color get redDark => Color(0xff9b0000);
+
+  static Color get grey => Color(0xfffafafa);
+
+  static double get baseFontSize => 18;
+
   static ThemeData get theme {
-    final themeData = ThemeData.dark();
-    final textTheme = themeData.primaryTextTheme.copyWith(
-        button: TextStyle(fontSize: 16, color: Color(0xffffffff)),
-        bodyText2: TextStyle(fontSize: 16, color: Color(0xff000000))
+    final themeData = ThemeData.light();
+    final baseTextStyle = themeData.textTheme.bodyText2.copyWith(
+      inherit: true,
+      color: black,
+      fontSize: baseFontSize,
+    );
+    final textTheme = themeData.textTheme.copyWith(
+      button: baseTextStyle.copyWith(color: white),
+      bodyText1: baseTextStyle.copyWith(fontSize: baseFontSize - 2),
+      bodyText2: baseTextStyle,
+      caption: baseTextStyle.copyWith(
+        fontSize: baseFontSize - 4,
+        color: redLight,
+        fontWeight: FontWeight.bold,
+      ),
     );
     return themeData.copyWith(
-        primaryColor: Color(0xffd50000),
-        primaryColorLight: Color(0xffff5131),
-        primaryColorDark: Color(0xff9b0000),
-        accentColor: Color(0xfffafafa),
-        scaffoldBackgroundColor: Color(0xffffffff),
-        textTheme: textTheme
+      primaryColor: red,
+      primaryColorLight: redLight,
+      primaryColorDark: redDark,
+      accentColor: grey,
+      scaffoldBackgroundColor: grey,
+      textTheme: textTheme,
     );
   }
 }

@@ -29,7 +29,6 @@ class SiteApp extends StatelessWidget {
             NavBar(),
             Container(
               padding: EdgeInsets.symmetric(vertical: 64, horizontal: 16),
-              color: Colors.yellow,
               alignment: Alignment.topCenter,
               child: BlocBuilder<PageBloc, PageState>(
                 builder: (context, state) => buildPage(context, state),
