@@ -9,10 +9,12 @@ import 'package:thevinesh/widgets/widgets.dart';
 
 void main() {
   BlocSupervisor.delegate = SiteBlocDelegate();
-  runApp(BlocProvider(
-    create: (context) => PageBloc(),
-    child: SiteApp(),
-  ));
+  runApp(
+    BlocProvider(
+      create: (context) => PageBloc(),
+      child: SiteApp(),
+    ),
+  );
 }
 
 class SiteApp extends StatelessWidget {

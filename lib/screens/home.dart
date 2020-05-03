@@ -2,15 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thevinesh/utils/utils.dart';
+import 'package:thevinesh/widgets/widgets.dart';
 
 class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenSizeConfig().init(context);
 
-    final avatarImageSize =
-        max(ScreenSizeConfig.blockSizeHorizontal, ScreenSizeConfig.blockSizeVertical) * 25;
+    final avatarImageSize = max(ScreenSizeConfig.blockSizeHorizontal,
+            ScreenSizeConfig.blockSizeVertical) *
+        25;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,9 +25,23 @@ class ScreenHome extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 16),
             child: FlutterLogo(),
           ),
-          Text(
-            "I'm Vinesh Raju - Android Developer and Tech Enthusiast.",
-            style: Theme.of(context).textTheme.headline6,
+          Wrap(
+            direction: Axis.horizontal,
+            children: [
+              Text(
+                "Hey. I'm Vinesh Raju - ",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              InkWell(
+                onTap: () {
+                  BlocProvider.of<TextCycleViewBloc>(context)
+                      .add(TextCycleOnNext());
+                },
+                child: TextCycleView(
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+            ],
           ),
           Text(
             """
