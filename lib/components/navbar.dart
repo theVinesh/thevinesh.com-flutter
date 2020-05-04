@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thevinesh/constants/constants.dart';
 import 'package:thevinesh/page/page.dart';
 import 'package:thevinesh/widgets/widgets.dart';
 
@@ -20,7 +21,7 @@ class _NavBarState extends State<NavBar> {
           tab,
           () => Text(
                 "${tab.toName()}",
-                style: Theme.of(context).textTheme.button,
+                style: Theme.of(context).primaryTextTheme.headline6,
               ));
     });
     return tabsMap;
@@ -47,11 +48,7 @@ class _NavBarState extends State<NavBar> {
           ),
           Spacer(),
           SlidingSegmentedControlWithThumbUnderneath(
-            thumbColor: Theme
-                .of(context)
-                .primaryTextTheme
-                .bodyText1
-                .color,
+            thumbColor: SiteTheme.white,
             children: _createTabs(),
             groupValue: _currentTab ?? PageBloc.initialPage,
             onValueChanged: (value) {

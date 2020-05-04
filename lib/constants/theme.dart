@@ -18,43 +18,19 @@ class SiteTheme {
 
   static ThemeData get theme {
     final themeData = ThemeData.light();
-    final baseTextStyle = GoogleFonts.getFont(
-      "Oxygen Mono",
-      textStyle: themeData.textTheme.bodyText2.copyWith(
-        inherit: true,
-        color: black,
-        fontSize: baseFontSize,
-      ),
-    );
-    final baseHeadlineStyle = baseTextStyle.copyWith(
-      fontWeight: FontWeight.bold,
-    );
-    final textTheme = themeData.textTheme.copyWith(
-      button: baseTextStyle.copyWith(color: white),
-      bodyText1: baseTextStyle.copyWith(fontSize: baseFontSize - 2),
-      bodyText2: baseTextStyle,
-      caption: baseTextStyle.copyWith(
-        fontSize: baseFontSize - 4,
-        color: redLight,
-        fontWeight: FontWeight.bold,
-      ),
-      headline2: baseHeadlineStyle.copyWith(
-        fontSize: baseFontSize + 2,
-      ),
-      headline4: baseHeadlineStyle.copyWith(
-        fontSize: baseFontSize + 4,
-      ),
-      headline6: baseHeadlineStyle.copyWith(
-        fontSize: baseFontSize + 8,
-      ),
-    );
+
     return themeData.copyWith(
       primaryColor: red,
       primaryColorLight: redLight,
       primaryColorDark: redDark,
       accentColor: grey,
-      scaffoldBackgroundColor: grey,
-      textTheme: textTheme,
+      scaffoldBackgroundColor: white,
+      textTheme: GoogleFonts.oxygenMonoTextTheme(
+        themeData.textTheme.apply(displayColor: black),
+      ),
+      primaryTextTheme: GoogleFonts.oxygenMonoTextTheme(
+        themeData.primaryTextTheme.apply(displayColor: white),
+      ),
     );
   }
 }
