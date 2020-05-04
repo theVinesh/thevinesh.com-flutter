@@ -8,18 +8,12 @@ part './text_cycle_view_event.dart';
 part './text_cycle_view_state.dart';
 
 class TextCycleViewBloc extends Bloc<TextCycleViewEvent, TextCycleViewState> {
-  final _delayInMilliseconds = 1500;
-  int _currentIndex = 0;
+  final _delayInMilliseconds = 1750;
+  int _currentCycle = 0;
   StreamSubscription _subscription;
 
-  final List<String> texts;
-
-  TextCycleViewBloc(this.texts) {
-    assert(texts.isNotEmpty);
-  }
-
   @override
-  TextCycleViewState get initialState => TextCycleNext(texts.first);
+  TextCycleViewState get initialState => TextCycleNext(_currentCycle);
 
   @override
   Stream<TextCycleViewState> mapEventToState(TextCycleViewEvent event) async* {
@@ -28,7 +22,7 @@ class TextCycleViewBloc extends Bloc<TextCycleViewEvent, TextCycleViewState> {
 
   Stream<TextCycleViewState> _onNext(TextCycleViewEvent event) async* {
     if (event is TextCycleStarted) {
-      _currentIndex = 0;
+      _currentCycle = 0;
       add(TextCycleResumed());
     }
 
@@ -36,9 +30,11 @@ class TextCycleViewBloc extends Bloc<TextCycleViewEvent, TextCycleViewState> {
       if (_subscription == null) {
         _subscription =
             Stream.periodic(Duration(milliseconds: _delayInMilliseconds))
-                .listen((event) {
-          add(TextCycleOnNext());
-        });
+                .listen(
+          (event) {
+            add(TextCycleOnNext());
+          },
+        );
       } else {
         _subscription.resume();
       }
@@ -49,8 +45,14 @@ class TextCycleViewBloc extends Bloc<TextCycleViewEvent, TextCycleViewState> {
     }
 
     if (event is TextCycleOnNext) {
-      _currentIndex = (_currentIndex + 1) % texts.length;
+      _currentCycle++;
     }
-    yield TextCycleNext(texts[_currentIndex]);
+    yield TextCycleNext(_currentCycle);
+  }
+
+  @override
+  Future<Function> close() async {
+    await _subscription.cancel();
+    await super.close();
   }
 }

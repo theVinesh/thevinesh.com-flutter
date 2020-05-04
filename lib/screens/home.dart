@@ -5,56 +5,79 @@ import 'package:thevinesh/utils/utils.dart';
 import 'package:thevinesh/widgets/widgets.dart';
 
 class ScreenHome extends StatelessWidget {
+  static const _vineshRoles = [
+    "Tech Enthusiast",
+    "Tinkerer",
+    "Software Developer",
+    "Lazy Human"
+  ];
+
+  static const _roleColors = [
+    Colors.red,
+    Colors.blue,
+    Colors.teal,
+    Colors.purple,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    ScreenSizeConfig().init(context);
+    SizeConfig().init(context);
 
-    final avatarImageSize = max(ScreenSizeConfig.blockSizeHorizontal,
-            ScreenSizeConfig.blockSizeVertical) *
-        25;
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: Colors.grey,
-            height: avatarImageSize,
-            width: avatarImageSize,
-            margin: EdgeInsets.only(bottom: 16),
-            child: FlutterLogo(),
-          ),
-          Wrap(
-            direction: Axis.horizontal,
-            children: [
-              Text(
-                "Hey. I'm Vinesh Raju - ",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              InkWell(
-                onTap: () {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BlocBuilder<TextCycleViewBloc, TextCycleViewState>(
+          builder: (context, state) {
+            return InkWell(
+              onTap: () {
+                BlocProvider.of<TextCycleViewBloc>(context)
+                    .add(TextCycleOnNext());
+              },
+              onHover: (hover) {
+                if (hover) {
                   BlocProvider.of<TextCycleViewBloc>(context)
-                      .add(TextCycleOnNext());
-                },
-                child: TextCycleView(
-                  style: Theme.of(context).textTheme.headline6,
+                      .add(TextCyclePaused());
+                } else {
+                  BlocProvider.of<TextCycleViewBloc>(context)
+                      .add(TextCycleResumed());
+                }
+              },
+              child: RichText(
+                textScaleFactor: SizeConfig.textScaleFactor,
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.headline4,
+                  children: [
+                    TextSpan(
+                      text: "I'm Vinesh Raju - ",
+                    ),
+                    if (state is TextCycleNext)
+                      TextSpan(
+                        text: _vineshRoles[state.index % _vineshRoles.length],
+                        style: Theme.of(context).textTheme.headline4.copyWith(
+                            color:
+                                _roleColors[state.index % _roleColors.length]),
+                      ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          Text(
+            );
+          },
+        ),
+        Text(
+          """
+              I am currently an Android Developer at Swiggy. I am curious about almost everything.
+            
+              When I am not sleeping, eating or coding,I like to Sing, Sketch and dream up about all the cool stuffs to do; which I almost always procrastinate.
+            
+              Some of those cool stuff I dream about end up in the form of writings
+            
+              Sign-up to get them in your inbox. I don't spam, I promise 🤞
             """
-                I am currently an Android Developer at Swiggy. I am curious about almost everything.
-              
-                When I am not sleeping, eating or coding,I like to Sing, Sketch and dream up about all the cool stuffs to do; which I almost always procrastinate.😅
-              
-                Some of those cool stuff I dream about end up in the form of writings ✍
-              
-                Sign-up to get them in your inbox. I don't spam, I promise 🤞
-              """
-                .stripMargin(),
-          ),
-        ],
-      ),
+              .stripMargin(),
+          style: Theme.of(context).textTheme.bodyText2,
+          textScaleFactor: SizeConfig.textScaleFactor,
+        ),
+      ],
     );
   }
 }

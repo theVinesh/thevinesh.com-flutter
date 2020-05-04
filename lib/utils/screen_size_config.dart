@@ -8,6 +8,7 @@ class SizeConfig {
   static double screenHeight;
   static double blockSizeHorizontal;
   static double blockSizeVertical;
+  static double textScaleFactor;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -15,5 +16,6 @@ class SizeConfig {
     screenHeight = _mediaQueryData.size.height;
     blockSizeHorizontal = screenWidth / 100;
     blockSizeVertical = screenHeight / 100;
+    textScaleFactor = lerpDouble(1, 1.05, blockSizeHorizontal);
   }
 }

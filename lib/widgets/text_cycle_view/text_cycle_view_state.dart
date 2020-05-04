@@ -5,10 +5,10 @@ abstract class TextCycleViewState extends Equatable {
 }
 
 class TextCycleNext extends TextCycleViewState{
-  final String text;
+  final int index;
 
-  const TextCycleNext(this.text);
+  const TextCycleNext(this.index);
 
   @override
-  List<Object> get props => [text];
+  List<Object> get props => [index];
 }

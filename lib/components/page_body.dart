@@ -24,13 +24,7 @@ class PageBody extends StatelessWidget {
           return ScreenResume();
         default:
           return BlocProvider(
-            create: (_) => TextCycleViewBloc([
-              "Tech Enthusiast",
-              "Software Engineer",
-              "Tinkerer",
-              "Lazy Human"
-            ])
-              ..add(TextCycleStarted()),
+            create: (_) => TextCycleViewBloc()..add(TextCycleStarted()),
             child: ScreenHome(),
           );
       }

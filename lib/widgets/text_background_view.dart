@@ -11,7 +11,6 @@ class TextBackgroundView extends StatelessWidget {
   final double opacity;
   final Widget child;
 
-  final double _scaleFactor = 8;
   static const String _sampleText =
       "Lorem ipsum dolor sit amet, leo malesuada orci pede mauris porttitor, "
       "wisi at posuere. Nulla aliquam ligula volutpat, in neque velit, tortor odio, "
@@ -30,21 +29,23 @@ class TextBackgroundView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenSizeConfig().init(context);
+    SizeConfig().init(context);
     return Stack(
       children: [
         Opacity(
           opacity: opacity,
           child: Container(
-            width: ScreenSizeConfig.screenWidth,
-            height: ScreenSizeConfig.screenHeight,
+            width: SizeConfig.screenWidth,
+            height: SizeConfig.screenHeight,
             child: Text(
               text,
               style: TextStyle(
                 color: textColor,
                 fontWeight: FontWeight.bold,
-                fontSize: _scaleFactor * ScreenSizeConfig.blockSizeHorizontal,
               ),
+              textScaleFactor: lerpDouble(1.5, 1.75, max(
+                  SizeConfig.blockSizeHorizontal,
+                  SizeConfig.blockSizeVertical)),
             ),
           ),
         ),
