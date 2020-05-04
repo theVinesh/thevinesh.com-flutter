@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:thevinesh/utils/screen_size_config.dart';
 
 class TextBackgroundView extends StatelessWidget {
@@ -11,19 +12,23 @@ class TextBackgroundView extends StatelessWidget {
   final double opacity;
   final Widget child;
 
-  static const String _sampleText =
-      "Lorem ipsum dolor sit amet, leo malesuada orci pede mauris porttitor, "
-      "wisi at posuere. Nulla aliquam ligula volutpat, in neque velit, tortor odio, "
-      "rutrum cum suspendisse in a mi, pellentesque sociosqu. Vestibulum ut magna "
-      "nec elit malesuada, amet risus consequat, consequat faucibus, natoque "
-      "nisl odio erat tellus integer integer. Netus justo fusce leo, vel ligula "
-      "purus erat sit non, erat ipsum aliquam mi tempor. In a nec quis viverra "
-      "eu luctus, sem nulla arcu, id quam elit ante ipsum viverra consequat.";
+  static const String _myTrivia =
+      "theVinesh. friends call me Vinesh."
+      "from Tirunelveli, Tamil Nadu, India. "
+      "graduated college from Chennai. "
+      "Ex-Zoho, Ex-Meesho. "
+      "I love Biriyani and Burritos. "
+      "Lives at Bengaluru for now. "
+      "Kotlin fanatic, Recently in an affair with Flutter. "
+      "My Early morning is 10am. "
+      "Android developer, Software Engineer, Designer, Developer, Mobile Developer. "
+      "Have an Idea? contact me. Freelance? Yes. "
+      "I binge watch random stuff on Youtube. ";
 
   const TextBackgroundView({
     this.textColor = Colors.black,
     this.opacity = 0.05,
-    this.text = _sampleText,
+    this.text = _myTrivia,
     this.child,
   });
 
@@ -43,9 +48,11 @@ class TextBackgroundView extends StatelessWidget {
                 color: textColor,
                 fontWeight: FontWeight.bold,
               ),
-              textScaleFactor: lerpDouble(1.5, 1.75, max(
-                  SizeConfig.blockSizeHorizontal,
-                  SizeConfig.blockSizeVertical)),
+              textScaleFactor: lerpDouble(
+                  1.5,
+                  1.75,
+                  max(SizeConfig.blockSizeHorizontal,
+                      SizeConfig.blockSizeVertical)),
             ),
           ),
         ),

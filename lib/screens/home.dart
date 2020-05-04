@@ -26,43 +26,7 @@ class ScreenHome extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BlocBuilder<TextCycleViewBloc, TextCycleViewState>(
-          builder: (context, state) {
-            return InkWell(
-              onTap: () {
-                BlocProvider.of<TextCycleViewBloc>(context)
-                    .add(TextCycleOnNext());
-              },
-              onHover: (hover) {
-                if (hover) {
-                  BlocProvider.of<TextCycleViewBloc>(context)
-                      .add(TextCyclePaused());
-                } else {
-                  BlocProvider.of<TextCycleViewBloc>(context)
-                      .add(TextCycleResumed());
-                }
-              },
-              child: RichText(
-                textScaleFactor: SizeConfig.textScaleFactor,
-                text: TextSpan(
-                  style: Theme.of(context).textTheme.headline4,
-                  children: [
-                    TextSpan(
-                      text: "I'm Vinesh Raju - ",
-                    ),
-                    if (state is TextCycleNext)
-                      TextSpan(
-                        text: _vineshRoles[state.index % _vineshRoles.length],
-                        style: Theme.of(context).textTheme.headline4.copyWith(
-                            color:
-                                _roleColors[state.index % _roleColors.length]),
-                      ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
+        _heroView(),
         Text(
           """
               I am currently an Android Developer at Swiggy. I am curious about almost everything.
@@ -80,4 +44,53 @@ class ScreenHome extends StatelessWidget {
       ],
     );
   }
+
+  Widget _heroView() => Stack(
+    alignment: Alignment.bottomLeft,
+        children: [
+          Placeholder(),
+          Container(
+            margin: EdgeInsets.all(8),
+            height: 52 * SizeConfig.textScaleFactor,
+            alignment: Alignment.topLeft,
+            child: BlocBuilder<TextCycleViewBloc, TextCycleViewState>(
+              builder: (context, state) {
+                return InkWell(
+                  onTap: () {
+                    BlocProvider.of<TextCycleViewBloc>(context)
+                        .add(TextCycleOnNext());
+                  },
+                  onHover: (hover) {
+                    if (hover) {
+                      BlocProvider.of<TextCycleViewBloc>(context)
+                          .add(TextCyclePaused());
+                    } else {
+                      BlocProvider.of<TextCycleViewBloc>(context)
+                          .add(TextCycleResumed());
+                    }
+                  },
+                  child: RichText(
+                    textScaleFactor: SizeConfig.textScaleFactor,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.headline5,
+                      children: [
+                        TextSpan(
+                          text: "I'm Vinesh Raju - ",
+                        ),
+                        if (state is TextCycleNext)
+                          TextSpan(
+                            text: _vineshRoles[state.index % _vineshRoles.length],
+                            style: Theme.of(context).textTheme.headline5.copyWith(
+                                color: _roleColors[
+                                    state.index % _roleColors.length]),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      );
 }
