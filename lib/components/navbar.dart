@@ -33,22 +33,14 @@ class _NavBarState extends State<NavBar> {
     return Container(
       padding: EdgeInsets.all(8),
       width: double.infinity,
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).primaryColorLight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          InkWell(
-            onTap: () => _onTabSelected(PageBloc.initialPage),
-            child: Container(
-                padding: EdgeInsets.all(4),
-                height: 36,
-                width: 36,
-                child: Placeholder()),
-          ),
           Spacer(),
           SlidingSegmentedControlWithThumbUnderneath(
-            thumbColor: SiteTheme.white,
+            thumbColor: Theme.of(context).accentColor,
             children: _createTabs(),
             groupValue: _currentTab ?? PageBloc.initialPage,
             onValueChanged: (value) {

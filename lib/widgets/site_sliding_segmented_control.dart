@@ -20,8 +20,6 @@ import 'package:flutter/widgets.dart';
 const EdgeInsetsGeometry _kHorizontalItemPadding =
     EdgeInsets.symmetric(vertical: 2, horizontal: 3);
 
-// The corner radius of the thumb.
-const Radius _kThumbRadius = Radius.circular(6.93);
 // The amount of space by which to expand the thumb from the size of the currently
 // selected child.
 const EdgeInsets _kThumbInsets = EdgeInsets.symmetric(horizontal: 1);
@@ -54,10 +52,6 @@ const double _kSegmentMinPadding = 9.25;
 // Both the mechanism and the value are speculated.
 const double _kTouchYDistanceThreshold = 50.0 * 50.0;
 
-// The corner radius of the segmented control.
-//
-// Inspected from iOS 13.2 simulator.
-const double _kCornerRadius = 8;
 
 // The spring animation used when the thumb changes its rect.
 final SpringSimulation _kThumbSpringAnimationSimulation = SpringSimulation(
@@ -145,7 +139,6 @@ class SlidingSegmentedControlWithThumbUnderneath<T> extends StatefulWidget {
     this.groupValue,
     this.thumbColor = _kThumbColor,
     this.padding = _kHorizontalItemPadding,
-    this.backgroundColor = Colors.transparent,
   })  : assert(children != null),
         assert(children.length >= 2),
         assert(padding != null),
@@ -215,12 +208,6 @@ class SlidingSegmentedControlWithThumbUnderneath<T> extends StatefulWidget {
   /// ```
   /// {@end-tool}
   final ValueChanged<T> onValueChanged;
-
-  /// The color used to paint the rounded rect behind the [children] and the separators.
-  ///
-  /// The default value is [CupertinoColors.tertiarySystemFill]. The background
-  /// will not be painted if null is specified.
-  final Color backgroundColor;
 
   /// The color used to paint the interior of the thumb that appears behind the
   /// currently selected item.
@@ -473,11 +460,6 @@ class _SegmentedControlState<T>
           constrainedAxis: Axis.horizontal,
           child: Container(
             padding: widget.padding.resolve(Directionality.of(context)),
-            decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.all(Radius.circular(_kCornerRadius)),
-              color: widget.backgroundColor,
-            ),
             child: box,
           ),
         );
@@ -1046,12 +1028,7 @@ class _RenderSegmentedControl<T> extends RenderBox
 
   void _paintThumb(PaintingContext context, Offset offset, Rect thumbRect) {
     final RRect thumbRRect =
-        RRect.fromRectAndRadius(thumbRect.shift(offset), _kThumbRadius);
-
-    context.canvas.drawRRect(
-      thumbRRect.inflate(0.5),
-      Paint()..color = const Color(0x0A000000),
-    );
+        RRect.fromRectAndCorners(thumbRect.shift(offset));
 
     context.canvas.drawRRect(
       thumbRRect,
