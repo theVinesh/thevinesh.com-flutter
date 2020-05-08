@@ -37,7 +37,7 @@ jobs:
           root: .
           paths:
             - ./node_modules
-            - ./dist
+            - ./build
             - ./package.json
             - ./firebase.json
             - ./lighthouserc.json
