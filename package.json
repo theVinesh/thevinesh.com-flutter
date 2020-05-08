@@ -7,12 +7,10 @@
   "scripts": {
     "version": "bash ./scripts/version.sh",
     "release": "./scripts/release.sh",
-    "test": "echo \"No tests specified\"",
-    "build": "flutter build web",
-    "serve": "firebase serve",
-    "build:prod": "flutter build web"
+    "test": "echo \"No tests specified\""
   },
   "devDependencies": {
+    "@lhci/cli": "^0.3.7",
     "firebase-tools": "^7.2.2",
     "netlify-cli": "^2.12.0"
   },
