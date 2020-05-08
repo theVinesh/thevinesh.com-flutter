@@ -8,12 +8,12 @@ jobs:
   build_and_test:
     <<: *base_config
     steps:
-      - checkout
       #      - run:
       #          name: Version
       #          command: |
       #            bash scripts/version.sh >> version
       #            cat version
+      - checkout
       - run:
           name: Installing npm Dependencies
           command: npm ci
@@ -22,29 +22,29 @@ jobs:
           name: Installing Flutter
           command: |
             git clone -b master https://github.com/flutter/flutter.git
-            flutter channel beta
-            flutter upgrade
-            flutter config --enable-web
-            flutter pub get
+            flutter/bin/flutter channel beta
+            flutter/bin/flutter upgrade
+            flutter/bin/flutter config --enable-web
+            flutter/bin/flutter pub get
 
-            - run:
-                name: Building in prod mode
-                command: npm run build:prod
-            #      - run:
-            #          name:  Running Tests
-            #          command: npm run test
-            - persist_to_workspace:
-                root: .
-                paths:
-                  - ./node_modules
-                  - ./dist
-                  - ./package.json
-                  - ./firebase.json
-                  - ./lighthouserc.json
-                  - ./.firebaserc
-                  - ./.netlify
-                  - ./scripts
-                  - ./version #this file is created by build process
+      - run:
+          name: Building in prod mode
+          command: flutter/bin/flutter build web
+      #      - run:
+      #          name:  Running Tests
+      #          command: npm run test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./node_modules
+            - ./dist
+            - ./package.json
+            - ./firebase.json
+            - ./lighthouserc.json
+            - ./.firebaserc
+            - ./.netlify
+            - ./scripts
+            - ./version #this file is created by build process
 
   upload_artifacts:
     <<: *base_config

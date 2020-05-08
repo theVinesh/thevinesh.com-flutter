@@ -45,3 +45,6 @@ app.*.map.json
 
 #gradle
 .gradle
+
+#npm
+node_modules/
