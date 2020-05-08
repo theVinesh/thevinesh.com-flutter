@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -12,17 +11,16 @@ class TextBackgroundView extends StatelessWidget {
   final double opacity;
   final Widget child;
 
-  static const String _myTrivia =
-      "theVinesh. friends call me Vinesh."
+  static const String _myTrivia = "theVinesh. friends call me Vinesh."
       "from Tirunelveli, Tamil Nadu, India. "
       "graduated college from Chennai. "
       "Ex-Zoho, Ex-Meesho. "
-      "I love Biriyani and Burritos. "
       "Lives at Bengaluru for now. "
+      "I love Biriyani and Burritos. "
       "Kotlin fanatic, Recently in an affair with Flutter. "
       "My Early morning is 10am. "
-      "Android developer, Software Engineer, Designer, Developer, Mobile Developer. "
       "Have an Idea? contact me. Freelance? Yes. "
+      "Android developer, Software Engineer, Designer, Developer, Mobile Developer. "
       "I binge watch random stuff on Youtube. ";
 
   const TextBackgroundView({
@@ -49,10 +47,10 @@ class TextBackgroundView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               textScaleFactor: lerpDouble(
-                  1.5,
-                  1.75,
-                  max(SizeConfig.blockSizeHorizontal,
-                      SizeConfig.blockSizeVertical)),
+                1.5,
+                1.75,
+                SizeConfig.biggestBlock,
+              ),
             ),
           ),
         ),

@@ -33,6 +33,7 @@ class SiteApp extends StatelessWidget {
               children: [
                 NavBar(),
                 PageBody(),
+                Footer(),
               ],
             ),
           ),

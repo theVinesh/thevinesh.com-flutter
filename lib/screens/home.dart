@@ -10,6 +10,8 @@ class ScreenHome extends StatelessWidget {
     "Think",
     "Design",
     "Code",
+    "Read",
+    "Learn",
     "Make",
     "Sing",
     "Sketch",
@@ -32,9 +34,9 @@ class ScreenHome extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.headline3,
             children: [
-              TextSpan(text: "hi"),
+              TextSpan(text: "hello world"),
             ],
           ),
           textScaleFactor: SizeConfig.textScaleFactor,
@@ -42,11 +44,11 @@ class ScreenHome extends StatelessWidget {
         _heroView(context),
         RichText(
           text: TextSpan(
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.headline6,
             children: [
               TextSpan(
                   text:
-                      "Lorem imsum dolor sit.Lorem imsum dolor sit.\n\nLorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.\n\nLorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit.Lorem imsum dolor sit."),
+                      "I am a UX/UI design/developer from India.\n\nCurrently, I work at Swiggy as an Android Developer.\n-"),
             ],
           ),
           textScaleFactor: SizeConfig.textScaleFactor,
@@ -67,7 +69,7 @@ class ScreenHome extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: EdgeInsets.only(bottom: 32),
+          padding: EdgeInsets.only(bottom: 4 * SizeConfig.biggestBlock),
           child: ShadowBoxView(
             minHeight: 8 * SizeConfig.blockSizeVertical,
             padding: EdgeInsets.all(2 * SizeConfig.biggestBlock),
@@ -76,7 +78,7 @@ class ScreenHome extends StatelessWidget {
                 return RichText(
                   textScaleFactor: SizeConfig.textScaleFactor,
                   text: TextSpan(
-                    style: Theme.of(context).primaryTextTheme.headline5,
+                    style: Theme.of(context).primaryTextTheme.headline4,
                     children: [
                       TextSpan(
                         text: "I'm Vinesh Raju, I like to ",
@@ -84,10 +86,10 @@ class ScreenHome extends StatelessWidget {
                       if (state is TextCycleNext)
                         TextSpan(
                           text: _verbs[state.index % _verbs.length],
-                          style: Theme.of(context).textTheme.headline5.copyWith(
+                          style: Theme.of(context).textTheme.headline4.copyWith(
                                 decoration: TextDecoration.underline,
-                                color:
-                                    _roleColors[state.index % _roleColors.length],
+                                color: _roleColors[
+                                    state.index % _roleColors.length],
                               ),
                         ),
                       TextSpan(
